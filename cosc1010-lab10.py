@@ -1,8 +1,8 @@
-# Your Name Here
+# Rylan Galloway
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section: 
+# Submission Date 11/18/2024
+# Lab 10
+# Lab Section: 14
 # Sources, people worked with, help given to: 
 # your
 # comments
@@ -43,3 +43,20 @@ def get_hash(to_hash):
 # Hash each individual password and compare it against the stored hash.
 # - When you find the match, print the plaintext version of the password.
 # - End your loop.
+def password_decoder():
+    try:
+        with open(Path('hash'), 'r') as hash_file:
+            hash_file_clean = hash_file.read().strip()
+    except FileNotFoundError :
+        print("File Not Found")
+    try:
+        with open(Path('rockyou.txt'), 'r') as rock_youfile:
+            rock_youfile_clean = rock_youfile.read().splitlines()
+            for line in rock_youfile_clean:
+                password = line.strip()
+                if get_hash(password) == hash_file_clean:
+                    print(line)
+    except FileNotFoundError :
+        print("File Not Found")
+
+password_decoder()
